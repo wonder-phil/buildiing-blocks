@@ -9,27 +9,27 @@ import com.google.gson.GsonBuilder;
 
 public class SimpleChain {
  
-	public static ArrayList<Block> dogchain = new ArrayList<Block>();
+	public static ArrayList<Block> blockChain = new ArrayList<Block>();
 	public static int difficulty = 5;
 
 	public static void main(String[] args) {	
 		//add our blocks to the blockchain ArrayList:
 		
-		dogchain.add(new Block("The first block", "0"));
+		blockChain.add(new Block("The first block ", "0"));
 		System.out.println("Trying to Mine block 1... ");
-		dogchain.get(0).mineBlock(difficulty);
+		blockChain.get(0).mineBlock(difficulty);
 		
-		dogchain.add(new Block("The second block",dogchain.get(dogchain.size()-1).hash));
+		blockChain.add(new Block("The second block ", blockChain.get(blockChain.size()-1).hash));
 		System.out.println("Trying to Mine block 2... ");
-		dogchain.get(1).mineBlock(difficulty);
+		blockChain.get(1).mineBlock(difficulty);
 		
-		dogchain.add(new Block("The third block",dogchain.get(dogchain.size()-1).hash));
+		blockChain.add(new Block("The third block ", blockChain.get(blockChain.size()-1).hash));
 		System.out.println("Trying to Mine block 3... ");
-		dogchain.get(2).mineBlock(difficulty);	
+		blockChain.get(2).mineBlock(difficulty);	
 		
 		System.out.println("\nBlockchain is Valid: " + isChainValid());
 		
-		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(dogchain);
+		String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockChain);
 		System.out.println("\nThe block chain: ");
 		System.out.println(blockchainJson);
 	}
@@ -40,9 +40,9 @@ public class SimpleChain {
 		String hashTarget = new String(new char[difficulty]).replace('\0', '0');
 		
 		//loop through blockchain to check hashes:
-		for(int i=1; i < dogchain.size(); i++) {
-			currentBlock = dogchain.get(i);
-			previousBlock = dogchain.get(i-1);
+		for(int i=1; i < blockChain.size(); i++) {
+			currentBlock = blockChain.get(i);
+			previousBlock = blockChain.get(i-1);
 			//compare registered hash and calculated hash:
 			if(!currentBlock.hash.equals(currentBlock.calculateHash()) ){
 				System.out.println("Current Hashes not equal");			
