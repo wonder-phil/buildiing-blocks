@@ -15,13 +15,17 @@ public class Subscriber {
 
   public static void main(String[] args) throws MqttException {
 
-    System.out.println("== START SUBSCRIBER ==");
+    System.out.println("=== START SUBSCRIBER 3 ===");
+    
+    String host = "";
 
-    MqttClient client=new MqttClient("tcp://localhost:1883", MqttClient.generateClientId());
-    client.setCallback( new SimpleMqttCallBack() );
+    MqttClient client=new MqttClient("tcp://" + host + ":1883", MqttClient.generateClientId());
+    SubscriberCallBack subscriberCallBack = new SubscriberCallBack();
+    client.setCallback( subscriberCallBack ); // new SimpleMqttCallBack()
     client.connect();
 
     client.subscribe("iot_data");
+    client.subscribe("mine_state");
 
   }
 
