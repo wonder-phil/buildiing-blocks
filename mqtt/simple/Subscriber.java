@@ -13,20 +13,21 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class Subscriber {
 
-  public static void main(String[] args) throws MqttException {
+    public static void main(String[] args) throws MqttException {
 
-    System.out.println("=== START SUBSCRIBER 3 ===");
+	System.out.println("=== START SUBSCRIBER 3 ===");
     
-    String host = "";
+	String host = "";
 
-    MqttClient client=new MqttClient("tcp://" + host + ":1883", MqttClient.generateClientId());
-    SubscriberCallBack subscriberCallBack = new SubscriberCallBack();
-    client.setCallback( subscriberCallBack ); // new SimpleMqttCallBack()
-    client.connect();
+	MqttClient client=new MqttClient("tcp://" + host + ":1883", MqttClient.generateClientId());
+	SubscriberCallBack subscriberCallBack = new SubscriberCallBack();
+	client.setCallback( subscriberCallBack ); // new SimpleMqttCallBack()
+	client.connect();
 
-    client.subscribe("iot_data");
-    client.subscribe("mine_state");
+	client.subscribe("mine_state");
+	client.subscribe("new_blocks");
+	client.subscribe("last_block");
 
-  }
+    }
 
 }
