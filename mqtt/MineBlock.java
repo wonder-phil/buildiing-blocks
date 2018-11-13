@@ -14,21 +14,16 @@ public class MineBlock implements Runnable {
     @Override
 	public void run() {
 	
-	
-	BufferedReader bufferedReader = null;
-	try {
-	    bufferedReader = new BufferedReader(new FileReader(fileNPath));
-	} catch (FileNotFoundException e) {
-	    System.err.println(" Can't read JSON Block ");
-	    e.printStackTrace();
-	}
 
         Gson gson = new Gson();
-        Block json = gson.fromJson(bufferedReader, Block.class); // Block.class
+        String jsonString = SharedData.lastBlock;
+        int difficulty = SharedData.difficulty;
+        
+        Block lastBlock = gson.fromJson(jsonString, Block.class);
         
         System.out.println("Mine Block");
-        System.out.println(json.toString());
-	
+        
+        lastBlock.mineBlock(difficulty);
 	
     }
     
