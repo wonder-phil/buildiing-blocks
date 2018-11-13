@@ -15,7 +15,7 @@ import com.google.gson.*;
 import b.Block;
 import b.MineBlock;
 
-public class SubscriberCallBack implements MqttCallback {
+public class SubscriberCallback implements MqttCallback {
 
     enum MiningENUM {
 	START_MINING,
@@ -29,7 +29,7 @@ public class SubscriberCallBack implements MqttCallback {
     private Thread thread = null;
     private FileWriter writer = null;
     
-    public SubscriberCallBack() {
+    public SubscriberCallback() {
 	
 	mineBlock = new MineBlock();
 	
