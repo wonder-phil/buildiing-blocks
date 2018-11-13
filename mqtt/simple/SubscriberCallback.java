@@ -14,6 +14,7 @@ import com.google.gson.*;
 
 import b.Block;
 import b.MineBlock;
+import b.SharedData;
 
 public class SubscriberCallback implements MqttCallback {
 
@@ -21,6 +22,7 @@ public class SubscriberCallback implements MqttCallback {
 	START_MINING,
 	    STOP_MINING
 	    }
+    
     
     private MiningENUM MiningState = MiningENUM.STOP_MINING;
     private Gson gson = new Gson();
@@ -65,7 +67,9 @@ public class SubscriberCallback implements MqttCallback {
 	String value = new String(mqttMessage.getPayload());
 	    
 	Block b = new Block("Foo", "Bar");
-	    
+	
+	SharedData.difficulty = 3;
+	
 	    
 	    
 	switch(topic) {
@@ -74,20 +78,8 @@ public class SubscriberCallback implements MqttCallback {
 	    block = gson.fromJson(value, Block.class);
 	    System.out.println(value);
 	    
-	    try {
-		writer = new FileWriter("block.json");
-		writer.write(value);
-	    } catch (IOException e) {
-		e.printStackTrace();
-	    } finally {
-		if (writer != null) {
-		    try {
-			writer.close();
-		    } catch (IOException e) {
-			e.printStackTrace();
-		    }
-		}
-	    }
+	    SharedData.lastBlock = value;
+	    
 	    
 	    
 	    break;
