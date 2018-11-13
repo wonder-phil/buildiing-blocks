@@ -20,7 +20,7 @@ public class Subscriber {
 	String host = "";
 
 	MqttClient client=new MqttClient("tcp://" + host + ":1883", MqttClient.generateClientId());
-	SubscriberCallBack subscriberCallBack = new SubscriberCallBack();
+	SubscriberCallback subscriberCallBack = new SubscriberCallback();
 	client.setCallback( subscriberCallBack ); // new SimpleMqttCallBack()
 	client.connect();
 
