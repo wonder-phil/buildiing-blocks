@@ -19,7 +19,7 @@ import b.SharedData;
 public class SubscriberCallback implements MqttCallback {
 
     enum MiningENUM {
-	START_MINING,
+    		START_MINING,
 	    STOP_MINING
 	    }
     
@@ -56,9 +56,6 @@ public class SubscriberCallback implements MqttCallback {
 	public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
 	
 	System.out.println("Message received:\t"+ new String(mqttMessage.getPayload()) );
-	System.out.println("mqttMessage: " + mqttMessage.toString());
-	
-	
 	System.out.println("mqttMessage topic: " + topic);
 	
 	
