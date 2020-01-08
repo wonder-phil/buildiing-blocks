@@ -9,6 +9,8 @@ package blocks;
 
 
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.Date;
 
 
@@ -46,4 +48,14 @@ public class Block {
 		}
 		System.out.println("Block Mined!!! : " + hash);
 	}
+	
+	@Override
+    public String toString() {
+		return hash + "\n" 
+					+ previousHash + "\n" 
+					+ Long.toString(timeStamp) + "\n" 
+					+ Integer.toString(nonce) + "\n" 
+					+ data ;
+	}
+
 }
